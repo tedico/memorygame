@@ -33,10 +33,17 @@ body {
 
 .card__face--front {
   background: #6a89cc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card__face--back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: #82ccdd;
+  font-size: 2rem;
   transform: rotateY( 180deg );
 }
 
