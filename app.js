@@ -1,29 +1,16 @@
 const gameContainer = document.getElementById("game");
 const divsBack = document.querySelectorAll('.card__face--back')
+const divCards = document.querySelectorAll('.card')
+console.dir(divCards)
 
 
-
-const divCard = document.querySelector('.card')
-console.dir(divCard)
-
-
-divCard.addEventListener('click', toggle)
-
-
-// if card match cards will stay face up
-// else displayed for one second before flipping over again
-
-function addClass(e) { // this works
-  // console.dir(e.target.parentNode)
-  const parent = e.target.parentNode
-  parent.classList.add('is-flipped')
-  // remove class after x seconds per the specs
+for (const divCard of divCards) {
+  divCard.addEventListener('click', toggle)
 }
 
-function toggle(e) { // this works 
-  const parent = e.target.parentNode
-  parent.classList.toggle('is-flipped');
-}
+
+
+
 
 const GAMETILES = 25 // represents how many game tiles there are on the screen
 const IMAGES = [
@@ -88,6 +75,22 @@ function setTextContent(el, i) { // this works
 }
 
 generateDivContent()
+
+// if card match cards will stay face up
+// else displayed for one second before flipping over again
+function addClass(e) { // this works
+  // console.dir(e.target.parentNode)
+  const parent = e.target.parentNode
+  parent.classList.add('is-flipped')
+  // remove class after x seconds per the specs
+}
+
+// toggles .is-flipped when card_face--front is clicked
+function toggle(e) { // this works 
+  console.dir(e.target)
+  const parent = e.target.parentNode
+  parent.classList.toggle('is-flipped');
+}
 
 
 // this function loops over the array of colors
