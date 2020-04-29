@@ -63,10 +63,20 @@ h2 {
 /* flip ========================================= */
 
 .scene {
+  align-items: center;
+  border: 1px solid #82ccdd;
+  display: flex;
+  font-size: 2em;
+  height: 94px;
+  justify-content: center;
+  perspective: 600px;
+  width: 94px;
+}
+/* .scene {
   width: 200px;
   height: 260px;
   perspective: 600px;
-}
+} */
 
 .card {
   width: 100%;
@@ -84,7 +94,14 @@ h2 {
 }
 
 .card__face--front {
-  background: red;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  background: #f6b93b;
+}
+
+.card__face--front:before {
+  content: '🙈';
 }
 
 .card__face--back {

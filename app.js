@@ -1,10 +1,13 @@
 const gameContainer = document.getElementById("game");
-const divs = document.querySelectorAll('.col')
+const divsBack = document.querySelectorAll('.card__face--back')
 
-console.log("yew!")
 
-const div = document.querySelector('.card')
-div.addEventListener('click', toggle)
+
+const divCard = document.querySelector('.card')
+console.dir(divCard)
+
+
+divCard.addEventListener('click', toggle)
 
 
 // if card match cards will stay face up
