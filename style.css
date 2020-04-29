@@ -60,7 +60,7 @@ h2 {
   width: 94px;
 }
 
-/* flip ========================================= */
+/* card-flip ========================================= */
 
 .scene {
   align-items: center;
@@ -101,12 +101,12 @@ h2 {
 }
 
 .card__face--front:before {
-  content: '🙈';
+  content: '🤔';
 }
 
 .card__face--back {
   align-items: center;
-  background-color: #f6b93b;
+  background-color: #3c6382;
   display: flex;
   justify-content: center;
   transform: rotateY( 180deg );
@@ -116,7 +116,9 @@ h2 {
   transform: rotateY(180deg);
 }
 
-.card { transform-origin: center right; }
+.card { 
+  transform-origin: center right; 
+}
 
 .card.is-flipped {
   transform: translateX(-100%) rotateY(-180deg);
