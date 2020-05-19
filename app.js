@@ -2,16 +2,18 @@
 const gameContainer = document.getElementById("game");
 const divsBack = document.querySelectorAll('.card__face--back')
 const divCards = document.querySelectorAll('.card')
+
 // let's start using immutable data structures at the very least
 const initModel = {
   name: 'Player',
-  guess: 0,
-  gameStart: false,
-  win: false,
+  guessCount: 0,
   match: [],
-  clicks: []
+  elementsMatchArr: [],
+  gameStart: false,
+  gameEnd: false,
+  gameWin: false,
 }
-let clicks = []
+
 const GAMETILES = 25 // represents how many game tiles there are on the screen
 const EMOJIS = [
   '🤘',
@@ -56,98 +58,57 @@ function shuffle(array) { // Helper fn: Fisher Yates Shuffle Algo
   return array;
 }
 
-// generates random images for backside
+// generates random emojis for backside
 function generateRandomEmojis(emojis) {
   const shuffledEmojis = shuffle(emojis);
-  const tempArr = [shuffledEmojis[0], shuffledEmojis[0], shuffledEmojis[1], shuffledEmojis[1]]
-  const randomEmojis = shuffle([...tempArr, ...shuffledEmojis.slice(4)])
+  const matchingEmojis = [shuffledEmojis[0], shuffledEmojis[0], shuffledEmojis[1], shuffledEmojis[1]]
+  const randomEmojis = shuffle([...matchingEmojis, ...shuffledEmojis.slice(4)])
   // console.table(randomEmojis)
   return randomEmojis
 }
 
-
-function setTextContent(el, i) { // this works
-  el.textContent =  emojis[i]
-  el.id = i // this is working. Look the inspector
-}
-function generateDivContent() { // this works
-  divsBack.forEach(setTextContent)
-}
-
-// if card match cards will stay face up
-// else displayed for one second before flipping over again
-function addClass(e) { // this works
-  // console.dir(e.target.parentNode)
-  const parent = e.target.parentNode
-  parent.classList.add('is-flipped') // I need to use toggle?
-  // remove class after x seconds per the specs
+function generateBackSideEmojis(emojis) { // this works
+  // function setTextContent(el, i) { // this works
+  //   el.textContent =  emojis[i]
+  //   el.id = i // this is working. Look the inspector
+  // }
+  divsBack.forEach((el, i) => {
+    el.textContent = emojis[i]
+    el.id = i
+  })
 }
 
-function isMatched(clicks) {
-  return clicks[0] === clicks[1]
+function removeEventClick(el) {
+  el.removeEventListener('click', removeEventClick)
 }
 
-function isClicked(e) {
-  const parent = e.target.parentNode
-  clicks =[...clicks, parent.children[1].textContent]
-  parent.classList.toggle('is-flipped');
-  console.log(clicks)
-  
-  if (clicks.length === 2) {
-    if (!isMatched(clicks)) {
-      clicks = []
-    } else {
-      console.log("Yay!🌮")
-      clicks = []
-    }
-  }
-}
+function clicked(e, model) {
+  let { elementsMatchArr } = model
+  let parentEl = e.target.parentElement
+  console.log(e.target)
+  removeEventClick(parentEl)
+  // parentEl.classList.toggle('is-flipped')
+  parentEl.classList.add('is-flipped')
 
-// toggles .is-flipped when card_face--front is clicked
-function toggle(e) { // this works 
-  const parent = e.target.parentNode
-  const content = parent.children[1].textContent
-  console.log(content)
-  parent.classList.toggle('is-flipped');
+  // parentEl.removeEventListener('click', clicked)
+  // updatedElementArray = [...elementsMatchArr, parent.children[1].textContent]  why is this not adding elements to the array?
+  // console.table(updatedElementArray)
 }
 
 
 for (const divCard of divCards) { 
-  divCard.addEventListener('click', isClicked) // toggle is the FN that allows the cards to "flip and un-flip"
+  divCard.addEventListener('click', (e) => clicked(e, initModel)) // toggle is the FN that allows the cards to "flip and un-flip"
 }
 
+generateBackSideEmojis(emojis) // we can see the rendering
 
 
-function gameInit() {
-  console.log("I am gameInit being called")
-  // shuffle cards: done
-  // generate random emojis for .card__face--back: done
-  // set text content for each .card__face--back div: done
-  // render div w text-content: done
-  generateDivContent() // we can see the rendering
-}
+// ==============================================================================================================================
 
-
-// interactions with view
-
-
-gameInit()
-
-
-// when I click on two consecutive cards I check if they match
-// they match they stay face up
-// if they don't match
-  // they stay face up for 1 second then face down again
-
-
-// check()
-  // match()
-
-function check(e, model) {
-  // match()
- 
-}
-
-function match() {
-
-}
+// toggles .is-flipped when card_face--front is clicked
+// function toggle(e) { // this works 
+//   const parent = e.target.parentNode
+//   const content = parent.children[1].textContent
+//   console.log(content)
+//   parent.classList.toggle('is-flipped');
+// }
