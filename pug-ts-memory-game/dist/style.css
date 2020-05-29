@@ -111,15 +111,15 @@ h2 {
   justify-content: center;
   transform: rotateY( 180deg );
 }
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
 .card { 
   transform-origin: center right; 
 }
 
 .card.is-flipped {
-  transform: rotateY(180deg);
-}
-.card.is-flipped {
   transform: translateX(-100%) rotateY(-180deg);
 }
-
-

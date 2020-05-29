@@ -1,7 +1,7 @@
 // onDOMContentLoaded(gameInit)
-const gameContainer = document.getElementById("game");
-const divsBack = document.querySelectorAll('.card__face--back')
 const divCards = document.querySelectorAll('.card')
+const divsBack = document.querySelectorAll('.card__face--back')
+
 
 // let's start using immutable data structures at the very least
 const initModel = {
@@ -85,8 +85,6 @@ function removeEventClick(el) {
 function clicked(e, model) {
   let { elementsMatchArr } = model
   let parentEl = e.target.parentElement
-  console.log(e.target)
-  removeEventClick(parentEl)
   // parentEl.classList.toggle('is-flipped')
   parentEl.classList.add('is-flipped')
 
