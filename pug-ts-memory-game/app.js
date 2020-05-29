@@ -2,14 +2,16 @@ const GAMETILES = 25 // represents how many game tiles there are on the screen
 const delegate = document.getElementById('delegate')
 const divsBack = document.querySelectorAll('.card__face--back')
 const divsFront = document.querySelectorAll('.card__face--front')
+const messageEl = document.getElementById("message")
 
-const initModel = {
+const model = {
     name: "Player 1",
     guessCount: 0,
     match: [],
     gamePlay: true,
     gameWin: false,
-    element: []
+    element: [],
+    message: ''
 }
 
 const EMOJIS = [
@@ -39,6 +41,7 @@ const EMOJIS = [
     '🌮',
     '🙊',
 ]
+
 
 function shuffle(array) { // Helper fn: Fisher Yates Shuffle Algo
   let counter = GAMETILES; // this is 25
@@ -71,7 +74,7 @@ function generateBackSideEmojis(emojis) { // this works
 
 function addEventListenersToFrontDiv(divs, model) {
   divs.forEach((div, i) => {
-    div.setAttribute('id', `f${i.toString()}`)// generates id's for all front-side divs I might not need this
+    div.setAttribute('id', `front-${i.toString()}`)// generates id's for all front-side divs I might not need this
     div.addEventListener('click', (e) => {
       onCardClick(e, model)
     })
@@ -83,49 +86,47 @@ function removeEventListenersToFrontDiv(divs) {
 }
 
 function compare(elementArr) {
-  return elementArr[0] === elementArr[1]
+  return elementArr[0].cardEmoji === elementArr[1].cardEmoji
 }
 
 function onCardClick(e, model) {
   const target  = e.target
-  const { guessCount, match, element } = model
+  const targetId = target.id
   const cardEmoji = target.nextElementSibling.innerText
   target.parentElement.classList.add("is-flipped")
-  console.dir(target)
 
-  if (guessCount <= 12 && match.length <= 2) { // see if we can still play the game
-    guessCount = guessCount + 1
-    element = [...element, cardEmoji] // this might output as an array of array. I'm trying to do element.push(cardEmoji)
+  if ((model.guessCount <= 12) && (model.match.length <= 2)) { // see if we can still play the game
+    model.guessCount = model.guessCount + 1
+    model.element.push({targetId, cardEmoji})// this might output as an array of array. I'm trying to do element.push(cardEmoji)
 
-    if (element.length === 2) {
-      if (compare(element)) {
-        match = [...match, compare(element)] // i'm trying to do match.push(true) match.length === 2 means they win
-        element = []// CLEAR OUT ELEMENT [] so they can play again (so they can compare again)
+    if (model.element.length === 2) {
+      if (compare(model.element)) { // the two elements matches
+        model.match.push(compare(model.element)) // i'm trying to do match.push(true) match.length === 2 means they win
+        model.element = []// CLEAR OUT ELEMENT [] so they can play again (so they can compare again)
       } else {
         setTimeout(() => {
-          target.parentElement.classList.remove("is-flipped")
+          const prevEl = document.getElementById(`${model.element[0].targetId}`)
+          const currEl = document.getElementById(`${model.element[1].targetId}`)
+          prevEl.parentElement.classList.remove("is-flipped")
+          currEl.parentElement.classList.remove("is-flipped")
+          model.element = []
         }, 1500)
       }
-    } else {
-      element.push(cardEmoji) // pay attention to this
     }
   } else { // game end
     // what has to happen to end the game?
     // there are 2 game states here win and lose
-    let message
-    removeEventListenersToFrontDiv(divsFront) // remove all eventlistners on the page
-    const messageEl = document.getElementById("message")
-    // initModel = { } and reset model to initial state
+    // removeEventListenersToFrontDiv(divsFront) // remove all eventlistners on the page
 
-    if (win) { // win has a different state criteria than lose - duh obviously - what does "win" look like?
-      message = `🎉Woohoo🍾 ${playerName} good job! Great 🧠`
-      messageEl.append(document.createTextNode(message))
-    } else {
-      message = `🙈Oh no! ${playerName} 🙊Try again! 🙉 And don't listen to the haters! You can do it💪`
-      messageEl.append(document.createTextNode(message))
-    }
+    // if (win) { // win has a different state criteria than lose - duh obviously - what does "win" look like?
+    //   model.message = `🎉Woohoo🍾 ${model.playerName} good job! Great 🧠`
+    //   messageEl.append(document.createTextNode(model.message))
+    // } else {
+    //   model.message = `🙈Oh no! ${model.playerName}, 🙊Try again! 🙉 And don't listen to the haters! You can do it💪`
+    //   messageEl.append(document.createTextNode(model.message))
+    // }
+     // initModel = { } and reset model to initial state
   }
-
 } // end onCardClick()
 
 
@@ -133,6 +134,6 @@ function onCardClick(e, model) {
 const emojis = generateRandomEmojis(EMOJIS)
 console.table(emojis)
 generateBackSideEmojis(emojis)
-addEventListenersToFrontDiv(divsFront, initModel)
+addEventListenersToFrontDiv(divsFront, model)
 
 
