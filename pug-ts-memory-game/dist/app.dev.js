@@ -98,8 +98,23 @@ function onCardClick(e, model) {
         // the two elements matches
         model.match.push(compare(model.element)); // i'm trying to do match.push(true) match.length === 2 means they win
 
+        if (model.guessCount === 4 && model.match.length === 2) {
+          // perfect score. They for surely won!
+          var message = "\uD83C\uDF89Woohoo\uD83C\uDF7E ".concat(model.playerName, " good job! Great \uD83E\uDDE0!"); // model.message = "I don't think I need this on the model. I can localize this."
+
+          messageEl.append(document.createTextNode(message));
+          removeEventListenersToFrontDiv(divsFront); // remove all eventlistners on the page
+          // change class to translate to another "screen"
+          // model.gameWin = true
+          // if (model.gameWin) {
+          // const gameMessageUI = document.getElementById("game-message")
+          // gameMessageUI.classList.add("game-message") scrolls down to different # (it's like an anchor text)
+          // }
+        }
+
         model.element = []; // CLEAR OUT ELEMENT [] so they can play again (so they can compare again)
       } else {
+        console.log(model.guessCount);
         setTimeout(function () {
           var prevEl = document.getElementById("".concat(model.element[0].targetId));
           var currEl = document.getElementById("".concat(model.element[1].targetId));
@@ -109,18 +124,14 @@ function onCardClick(e, model) {
         }, 1500);
       }
     }
-  } else {// game end
-    // what has to happen to end the game?
-    // there are 2 game states here win and lose
-    // removeEventListenersToFrontDiv(divsFront) // remove all eventlistners on the page
-    // if (win) { // win has a different state criteria than lose - duh obviously - what does "win" look like?
-    //   model.message = `🎉Woohoo🍾 ${model.playerName} good job! Great 🧠`
-    //   messageEl.append(document.createTextNode(model.message))
-    // } else {
-    //   model.message = `🙈Oh no! ${model.playerName}, 🙊Try again! 🙉 And don't listen to the haters! You can do it💪`
-    //   messageEl.append(document.createTextNode(model.message))
-    // }
-    // initModel = { } and reset model to initial state
+  } else if (model.guessCount > 12 && model.match.length <= 2) {
+    // game end
+    console.log(model.guessCount);
+    console.log("You've technically lost the game. Does your code work?");
+    removeEventListenersToFrontDiv(divsFront); // remove all eventlistners on the page
+
+    model.message = "\uD83D\uDE48Oh no! ".concat(model.playerName, ", \uD83D\uDE4ATry again! \uD83D\uDE49 And don't listen to the haters! You can do it\uD83D\uDCAA");
+    messageEl.append(document.createTextNode(model.message)); //  initModel = { } and reset model to initial state
   }
 } // end onCardClick()
 
