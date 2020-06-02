@@ -1,0 +1,22 @@
+.modal__container {
+  background-color: hotpink;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-size: cover;
+  background-position: center;
+  z-index: 1000;
+
+  .modal__content {
+
+    .welcome__display-text {
+
+    }
+    .modal__input {
+
+    }
+  }
+}
