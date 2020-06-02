@@ -1,4 +1,6 @@
-include mixins/_scene
+include views/_scene
+include views/_modal
+
 <!DOCTYPE html>
 html(lang="en")
   head
@@ -9,27 +11,37 @@ html(lang="en")
     link(rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png")
     link(href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet")
     link(rel="manifest" href="/site.webmanifest")
-    link(rel="stylesheet", href="style.css")
+    link(rel="stylesheet", href="css/main.min.css")
     title Memory Game
   body
     .container
-      //- form#player-input
-      //-   input()
-      h1 Memory 🧠 Game
-      #delegate
-        .row
-          +scene()
-        .row
-          +scene()
-        .row
-          +scene()
-        .row
-          +scene()
-        .row
-          +scene()
-      //- #game-message.game-message
-      //-   h1 message here
-      //-   p Do you want to play again?
-      //-   button yes
-      //-   button no
-  script(src="../app.js")
+      section(id="welcome-player" class="welcome__player")
+        .welcome__container
+          h1.welcome__display-text Hi! 👋 Are you ready to play?
+          form(action="" id="form-input")
+            input(id="player-input" placeholder="Type your name then press enter...")
+
+      section(id="game" class="game__section")
+        .game__container
+          h1(id="player-name") Kelvin's
+          p Mem🧠ry Game
+          #delegate
+            .row
+              +scene()
+            .row
+              +scene()
+            .row
+              +scene()
+            .row
+              +scene()
+            .row
+              +scene()
+
+      section#game-messages
+        p(id="game-message") Win or lose message here
+        form()
+          label Do you want to play again?
+            button Yes
+            button No
+
+  script(src="app.js")

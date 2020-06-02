@@ -1,48 +1,3 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  align-items: center;
-  background: rgb(60,99,130);
-  background: radial-gradient(circle, rgba(60,99,130,1) 0%, rgba(7,153,146,1) 100%); 
-  display: flex;
-  color: white;
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 16px;
-  justify-content: center;
-}
-
-.container {
-  align-items: center;
-  /* border: 1px solid magenta; */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3em;
-  margin-bottom: 1em;
-  text-align: center;
-}
-
-h2 {
-  font-size: 2em;
-  margin-top: 1em;
-}
-
-
-#parent {
-  border: 5px solid #3c6382;
-  border-radius: 3px;
-  min-width: 500px;
-  min-height: 500px;
-}
-
 .row {
   align-items: center;
   display: flex;
@@ -55,9 +10,15 @@ h2 {
   border: 1px solid #82ccdd;
   display: flex;
   font-size: 2em;
-  height: 94px;
+  height: 100px;
   justify-content: center;
-  width: 94px;
+  width: 100px;
+}
+
+.container {
+  border: 1px solid magenta;
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 /* card-flip ========================================= */
@@ -72,11 +33,6 @@ h2 {
   perspective: 600px;
   width: 94px;
 }
-/* .scene {
-  width: 200px;
-  height: 260px;
-  perspective: 600px;
-} */
 
 .card {
   width: 100%;

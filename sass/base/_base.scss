@@ -1,0 +1,41 @@
+*, /* this targets all the 'real' elements */
+*::after, /* these targets all the pseudo-elements */
+*::before {
+  box-sizing: inherit;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+body {
+  align-items: center;
+  background: rgb(60,99,130);
+  background: radial-gradient(circle, rgba(60,99,130,1) 0%, rgba(7,153,146,1) 100%); 
+  display: flex;
+  color: white;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
