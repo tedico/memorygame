@@ -1,9 +1,39 @@
+.game-messages {
+  
+  margin: 3em auto;
+  width: 100%;
 
-#game-messages {
-  background-color: darkmagenta;
-}
+  &__display-text{
+    font-size: 2rem;
+    font-weight: 700;
+  }
 
-#game-message {
-  color: magenta;
-  font-size: 5rem;
+  &__body {
+    color: white;
+    font-size: 1.5rem;
+    padding: 1em;
+  }
+  &__button-set {
+    display: flex;
+    justify-content: center;
+
+    &--yes {
+      background-color:rgba(87, 239, 196, 0.50);
+      border: 1px solid rgba(87, 239, 196, 0.50);
+      border-radius: 3px;
+      color: white;
+      margin: 0 4px;
+      ;
+      padding: .5em 2em;
+    }
+    &--no {
+      border: 1px solid rgba(214, 46, 46, 0.8);
+      background-color: rgba(214, 46, 46, 0.8);
+      border-radius: 3px;
+      color: white;
+      margin: 0 4px;
+      padding: .5em 2em;
+    }
+  }
+
 }

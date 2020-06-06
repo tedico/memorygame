@@ -14,13 +14,15 @@ html(lang="en")
     link(rel="stylesheet", href="css/main.min.css")
     title Memory Game
   body
-    .container
-      section(id="welcome-player" class="welcome__player")
-        .welcome__container
-          h1.welcome__display-text Hi! 👋 Are you ready to play?
-          form(action="" id="form-input")
-            input(id="player-input" placeholder="Type your name then press enter...")
+    //- .modal__container
+    //-     .modal__content
+    //-       .modal__input-container
+    //-         p.modal__display-text Hi! 👋 Are you ready to play?
+    //-         form(action="" id="form-input" class="modal__form")
+    //-           input(type="text" id="player-input" name="playerName" maxlength="150" class="modal__input" placeholder="Type your name then press enter to play...")
+    //-         p(id="modal-close" class="modal__btn-close") N🙅ope
 
+    .container
       section(id="game" class="game__section")
         .game__container
           h1(id="player-name") Kelvin's
@@ -37,11 +39,11 @@ html(lang="en")
             .row
               +scene()
 
-      section#game-messages
-        p(id="game-message") Win or lose message here
-        form()
-          label Do you want to play again?
-            button Yes
-            button No
+        section(id="game-messages" class="game-messages")
+          p(id="game-messages-display-text" class="game-messages__display-text") Win or lose message here
+          p(class="game-messages__body") Do you want to play again?
+          .game-messages__button-set
+            button(id="btn-yes" class="game-messages__button-set--yes") Yes
+            button(id="btn-no" class="game-messages__button-set--no") No
 
   script(src="app.js")

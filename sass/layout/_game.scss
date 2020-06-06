@@ -1,8 +1,8 @@
 .game__section {
-  border: 1px solid yellow;
   align-items: center;
-  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  height: 100vh;
   justify-content: center;
 
   .game__container {

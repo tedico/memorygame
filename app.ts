@@ -4,52 +4,6 @@ const divsBack = document.querySelectorAll('.card__face--back')
 const divsFront = document.querySelectorAll('.card__face--front')
 const messageEl = document.getElementById("message")
 
-function modal() {
-  //select DOM elements
-  const body = document.selectElementsByTagName("body")
-  const modalContainer = document.createElement("div")
-  const modalContent = document.createElement("div")
-  const closeBtn = document.createElement("button")
-  // create DOM elements
-  const modalH1 = document.createElement("h1")
-  const modalForm = document.createElement("form")
-  const modalInput = document.createElement("input")
-  // set element attributes
-  modalContainer.id = "modal__container"
-  modalContent.id = "modal__content"
-  closeBtn.className = "modal__close"
-  modalH1.className = "welcome__display-text"
-  modalForm.id = "form-input"
-  modalInput.id = "player-input"
-  modalInput.className = "modal__input"
-  modalInput.setAttribute("type", "text")
-  modalInput.setAttribute("placeholder", "Type your name then press enter...")
-  // construct the DOM
-  modalContent.appendChild(modalH1)
-  modalContent.appendChild(modalForm)
-  modalContent.appendChild(closeBtn)
-
-  modalForm.appendChild(modalInput)
-
-  modalContainer.appendChild(modalContent)
-  // does it work?
-  console.log(modalContainer)
-
-  // return public API
-  return {
-
-    open() {
-      body.appendChild(modalContainer)
-      //write the CSS for it here.
-      // I need to make it visible.
-    },
-
-    close() {
-      // I need to hide it from the DOM
-    },
-  }
-}
-
 const model = {
     name: "Player 1",
     guessCount: 0,
@@ -184,8 +138,81 @@ function onCardClick(e, model) {
 
 
 
+function Modal() {
+  //select DOM elements
+  const body = document.getElementsByTagName("body")
+  // create DOM elements
+  const modalContainer = document.createElement("div")
+  const modalContent = document.createElement("div")
+  const closeBtn = document.createElement("button")
+  const modalH1 = document.createElement("h1")
+  const modalForm = document.createElement("form")
+  const modalInput = document.createElement("input")
+  // set element attributes
+  modalContainer.id = "modal-container"
+  modalContainer.className = "modal__container"
+  modalContent.id = "modal__content"
+  closeBtn.className = "modal__close"
+  modalH1.className = "welcome__display-text"
+  modalForm.id = "form-input"
+  modalInput.id = "player-input"
+  modalInput.className = "modal__input"
+  modalInput.setAttribute("type", "text")
+  modalInput.setAttribute("placeholder", "Type your name then press enter...")
+  // construct the DOM
+  modalContent.appendChild(modalH1)
+  modalContent.appendChild(modalForm)
+  modalContent.appendChild(closeBtn)
+
+  modalForm.appendChild(modalInput)
+
+  modalContainer.appendChild(modalContent)
+  body.prepend(modalContainer)// I'm prepending it to the wrong DOM element
+  // does it work?
+  console.log(modalContainer)
+
+  // return public API
+  return {
+
+    open() {
+      body.appendChild(modalContainer)
+      //write the CSS for it here.
+      // I need to make it visible.
+    },
+
+    close() {
+      // I need to hide it from the DOM preferrably than destroy it.
+      // I still want this in memory
+      body.removeChild(modalContainer) // I think a CSS rule would be better
+    },
+  }
+}
+
+function gameMessage () {
+  // DOM elements here
+
+  return {
+    winMessage () {
+
+    },
+
+    loseMessage() {
+
+    },
+
+    resetGame() {
+
+    }
+
+
+  }
+}
+
+
+const modal = Modal()
 const emojis = generateRandomEmojis(EMOJIS)
 console.table(emojis)
+// modal.open()
 generateBackSideEmojis(emojis)
 addEventListenersToFrontDiv(divsFront, model)
 

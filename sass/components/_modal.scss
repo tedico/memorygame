@@ -1,22 +1,53 @@
 .modal__container {
-  background-color: hotpink;
+  background: rgb(85,239,196);
+  background: radial-gradient(circle, rgba(85,239,196,0.60) 0%, rgba(0,206,201,0.60) 35%);
+  background-size: cover;
   align-items: center;
   display: flex;
+  height: 100vh;
+  width: 100%;
   justify-content: center;
   top: 0;
   left: 0;
   position: absolute;
-  background-size: cover;
   background-position: center;
   z-index: 1000;
 
   .modal__content {
+    align-items: center;
+    border-radius: 5px;
+    background-color: rgba(117, 186, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    width: 700px;
+    height: 700px;
 
-    .welcome__display-text {
+    .modal__input-container {
+      .modal__display-text {
+        color: white;
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      .modal__form {
+        width: 100%;
 
-    }
-    .modal__input {
+        .modal__input {
+          border-radius: 5px;
+          color: #636e72;
+          display: block;
+          margin: 1.5em auto;
+          outline: none;
+          padding: 1em;
+          width: 90%;
+          text-align: center;
+        }
+      }
+      p {
+        color: white;
+        font-size: 1.5rem;
+        font-weight: 700;
 
+      }
     }
   }
 }

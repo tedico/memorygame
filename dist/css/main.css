@@ -369,6 +369,7 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -407,56 +408,85 @@ p {
   text-align: center;
 }
 
-.welcome__player {
-  min-height: 100vh;
-  color: white;
+.modal__container {
+  background: #55efc4;
+  background: -webkit-radial-gradient(circle, rgba(85, 239, 196, 0.6) 0%, rgba(0, 206, 201, 0.6) 35%);
+  background: -o-radial-gradient(circle, rgba(85, 239, 196, 0.6) 0%, rgba(0, 206, 201, 0.6) 35%);
+  background: radial-gradient(circle, rgba(85, 239, 196, 0.6) 0%, rgba(0, 206, 201, 0.6) 35%);
+  background-size: cover;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-position: center;
+  z-index: 1000;
 }
 
-.welcome__player .welcome__container {
-  border: 1px solid yellow;
+.modal__container .modal__content {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 5px;
+  background-color: rgba(117, 186, 255, 0.9);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  width: 700px;
+  height: 700px;
+}
+
+.modal__container .modal__content .modal__input-container .modal__display-text {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.modal__container .modal__content .modal__input-container .modal__form {
+  width: 100%;
+}
+
+.modal__container .modal__content .modal__input-container .modal__form .modal__input {
+  border-radius: 5px;
+  color: #636e72;
+  display: block;
+  margin: 1.5em auto;
+  outline: none;
+  padding: 1em;
+  width: 90%;
+  text-align: center;
+}
+
+.modal__container .modal__content .modal__input-container p {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.game__section {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  height: 100%;
-}
-
-.welcome__player .welcome__container .welcome__display-text {
-  margin-bottom: .25em;
-}
-
-.welcome__player .welcome__container form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.welcome__player .welcome__container form input {
-  border-radius: 5px;
-  font-size: 2rem;
-  padding: .5em;
-  text-align: center;
-  width: 100%;
-}
-
-.game__section {
-  border: 1px solid yellow;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  min-height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  height: 100vh;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -478,13 +508,47 @@ p {
   text-align: center;
 }
 
-#game-messages {
-  background-color: darkmagenta;
+.game-messages {
+  margin: 3em auto;
+  width: 100%;
 }
 
-#game-message {
-  color: magenta;
-  font-size: 5rem;
+.game-messages__display-text {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.game-messages__body {
+  color: white;
+  font-size: 1.5rem;
+  padding: 1em;
+}
+
+.game-messages__button-set {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.game-messages__button-set--yes {
+  background-color: rgba(87, 239, 196, 0.5);
+  border: 1px solid rgba(87, 239, 196, 0.5);
+  border-radius: 3px;
+  color: white;
+  margin: 0 4px;
+  padding: .5em 2em;
+}
+
+.game-messages__button-set--no {
+  border: 1px solid rgba(214, 46, 46, 0.8);
+  background-color: rgba(214, 46, 46, 0.8);
+  border-radius: 3px;
+  color: white;
+  margin: 0 4px;
+  padding: .5em 2em;
 }
 
 .row {
@@ -517,7 +581,6 @@ p {
 }
 
 .container {
-  border: 1px solid magenta;
   margin: 0 auto;
   max-width: 1200px;
 }

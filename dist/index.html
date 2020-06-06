@@ -13,14 +13,6 @@
   </head>
   <body>
     <div class="container">
-      <section class="welcome__player" id="welcome-player">
-        <div class="welcome__container">
-          <h1 class="welcome__display-text">Hi! 👋 Are you ready to play?</h1>
-          <form action="" id="form-input">
-            <input id="player-input" placeholder="Type your name then press enter..."/>
-          </form>
-        </div>
-      </section>
       <section class="game__section" id="game">
         <div class="game__container">
           <h1 id="player-name">Kelvin's</h1>
@@ -188,15 +180,14 @@
             </div>
           </div>
         </div>
-      </section>
-      <section id="game-messages">
-        <p id="game-message">Win or lose message here</p>
-        <form>
-          <label>Do you want to play again?
-            <button>Yes</button>
-            <button>No</button>
-          </label>
-        </form>
+        <section class="game-messages" id="game-messages">
+          <p class="game-messages__display-text" id="game-messages-display-text">Win or lose message here</p>
+          <p class="game-messages__body">Do you want to play again?</p>
+          <div class="game-messages__button-set">
+            <button class="game-messages__button-set--yes" id="btn-yes">Yes</button>
+            <button class="game-messages__button-set--no" id="btn-no">No</button>
+          </div>
+        </section>
       </section>
     </div>
   </body>

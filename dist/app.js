@@ -10,46 +10,6 @@ var delegate = document.getElementById('delegate');
 var divsBack = document.querySelectorAll('.card__face--back');
 var divsFront = document.querySelectorAll('.card__face--front');
 var messageEl = document.getElementById("message");
-function modal() {
-    //select DOM elements
-    var body = document.selectElementsByTagName("body");
-    var modalContainer = document.createElement("div");
-    var modalContent = document.createElement("div");
-    var closeBtn = document.createElement("button");
-    // create DOM elements
-    var modalH1 = document.createElement("h1");
-    var modalForm = document.createElement("form");
-    var modalInput = document.createElement("input");
-    // set element attributes
-    modalContainer.id = "modal__container";
-    modalContent.id = "modal__content";
-    closeBtn.className = "modal__close";
-    modalH1.className = "welcome__display-text";
-    modalForm.id = "form-input";
-    modalInput.id = "player-input";
-    modalInput.className = "modal__input";
-    modalInput.setAttribute("type", "text");
-    modalInput.setAttribute("placeholder", "Type your name then press enter...");
-    // construct the DOM
-    modalContent.appendChild(modalH1);
-    modalContent.appendChild(modalForm);
-    modalContent.appendChild(closeBtn);
-    modalForm.appendChild(modalInput);
-    modalContainer.appendChild(modalContent);
-    // does it work?
-    console.log(modalContainer);
-    // return public API
-    return {
-        open: function () {
-            body.appendChild(modalContainer);
-            //write the CSS for it here.
-            // I need to make it visible.
-        },
-        close: function () {
-            // I need to hide it from the DOM
-        }
-    };
-}
 var model = {
     name: "Player 1",
     guessCount: 0,
@@ -172,7 +132,64 @@ function onCardClick(e, model) {
         //  initModel = { } and reset model to initial state
     }
 } // end onCardClick()
+function Modal() {
+    //select DOM elements
+    var body = document.getElementsByTagName("body");
+    // create DOM elements
+    var modalContainer = document.createElement("div");
+    var modalContent = document.createElement("div");
+    var closeBtn = document.createElement("button");
+    var modalH1 = document.createElement("h1");
+    var modalForm = document.createElement("form");
+    var modalInput = document.createElement("input");
+    // set element attributes
+    modalContainer.id = "modal-container";
+    modalContainer.className = "modal__container";
+    modalContent.id = "modal__content";
+    closeBtn.className = "modal__close";
+    modalH1.className = "welcome__display-text";
+    modalForm.id = "form-input";
+    modalInput.id = "player-input";
+    modalInput.className = "modal__input";
+    modalInput.setAttribute("type", "text");
+    modalInput.setAttribute("placeholder", "Type your name then press enter...");
+    // construct the DOM
+    modalContent.appendChild(modalH1);
+    modalContent.appendChild(modalForm);
+    modalContent.appendChild(closeBtn);
+    modalForm.appendChild(modalInput);
+    modalContainer.appendChild(modalContent);
+    body.prepend(modalContainer); // I'm prepending it to the wrong DOM element
+    // does it work?
+    console.log(modalContainer);
+    // return public API
+    return {
+        open: function () {
+            body.appendChild(modalContainer);
+            //write the CSS for it here.
+            // I need to make it visible.
+        },
+        close: function () {
+            // I need to hide it from the DOM preferrably than destroy it.
+            // I still want this in memory
+            body.removeChild(modalContainer); // I think a CSS rule would be better
+        }
+    };
+}
+function gameMessage() {
+    // DOM elements here
+    return {
+        winMessage: function () {
+        },
+        loseMessage: function () {
+        },
+        resetGame: function () {
+        }
+    };
+}
+var modal = Modal();
 var emojis = generateRandomEmojis(EMOJIS);
 console.table(emojis);
+// modal.open()
 generateBackSideEmojis(emojis);
 addEventListenersToFrontDiv(divsFront, model);
